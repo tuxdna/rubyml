@@ -53,3 +53,9 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## References
+
+ * [My Machine Learning Notes](http://tuxdna.github.io/pages/machine-learning.html)
+ * [My Apache Mahout Notes](http://tuxdna.github.io/pages/mahout.html)
+ * [My Mahout Scala Talk](http://tuxdna.in/files/presentations/mahout-scala-talk.html)
