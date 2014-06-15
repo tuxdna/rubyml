@@ -1,6 +1,18 @@
-# Rubyml
+# RubyML
 
-TODO: Write a gem description
+This codebase is for the a talk:
+
+    Title: Machine Learning with Ruby
+
+    Abstract:
+
+    I will discuss ways to make sense out of data. Specifically:
+     * Using Classification, Clustering and Recommendation algorithms
+     * and a demo
+
+    Requirements
+     * A basic understanding of Ruby Programming Language
+     * Basic mathematics: Probability and Statistics
 
 ## Installation
 
@@ -19,6 +31,20 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+
+## Outline
+
+### Classification
+
+
+
+### Clustering
+
+
+
+### Recommendation
+
 
 ## Contributing
 
