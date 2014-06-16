@@ -61,7 +61,7 @@ To use it on your machine
  * [My Machine Learning Notes](http://tuxdna.github.io/pages/machine-learning.html)
  * [My Apache Mahout Notes](http://tuxdna.github.io/pages/mahout.html)
  * [My Mahout Scala Talk](http://tuxdna.in/files/presentations/mahout-scala-talk.html)
-
+ * [Following Redirects with Net/HTTP](http://www.railstips.org/blog/archives/2009/03/04/following-redirects-with-nethttp/)
 
 ## Notes
 

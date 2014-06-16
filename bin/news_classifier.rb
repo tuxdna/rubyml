@@ -66,13 +66,17 @@ rss_parser.article_urls.each do |article_url|
              ].join(", ")
   
   article = HtmlParser.new(article_url, selector)
-  puts "Content => #{article.content}"
-  scores = classifier.scores(article.content)
-  p scores
-  category_name, score = scores.max_by{ |k,v| v }
-  # DEBUG info
-  # p "category: #{category_name}, score: #{score}, scores: #{scores}, url: #{article_url}"
-  results[category_name] << article_url
+  if article.content.nil? or article.content.length == 0 then
+    # skip this article
+  else
+    puts "Content => #{article.content}"
+    scores = classifier.scores(article.content)
+    p scores
+    category_name, score = scores.max_by{ |k,v| v }
+    # DEBUG info
+    # p "category: #{category_name}, score: #{score}, scores: #{scores}, url: #{article_url}"
+    results[category_name] << article_url
+  end
 end
 
 p results
