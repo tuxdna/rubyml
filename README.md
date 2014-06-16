@@ -30,8 +30,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use it on your machine
 
+    $ gem build *.gemspec; gem install --local -V rubyml-0.0.1.gem 
+    $ news_classifier.rb
 
 ## Outline
 

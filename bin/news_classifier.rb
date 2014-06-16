@@ -8,34 +8,9 @@ require 'rss/2.0'
 require 'html_parser'
 require 'classifier'
 require 'rss_parser'
-require 'fileutils'
+require 'cache'
 
-CACHE_FOLDER="./cache"
-
-def get_from_cache(category) 
-  filename = "#{CACHE_FOLDER}/#{category}.seralized.cache"
-  if File.exists?(filename) then
-    f = File.new(filename, "r")
-    x = f.read
-    Marshal.load(x)
-  else
-    nil
-  end
-end
-
-def add_to_cache(category, data)
-  if ! File.exists?(CACHE_FOLDER) then
-    FileUtils.mkdir_p(CACHE_FOLDER)
-  end
-
-  filename = "#{CACHE_FOLDER}/#{category}.seralized.cache"
-  f = File.new(filename, "w")
-  x = Marshal.dump(data)
-  f.write(x)
-  f.close
-end
-
-def read_training_data() 
+def read_training_data(cache)
   # training data samples
   categories = {
     economy: 'http://en.wikipedia.org/wiki/Economy',
@@ -48,12 +23,12 @@ def read_training_data()
   categories.each { |category,url|
 
     puts "Content for #{category}"
-    content = get_from_cache(category)
+    content = cache.get(category)
     if content.nil? then
       puts "Fetching  #{category}: #{url}"
       hp = HtmlParser.new(url, '.mw-content-ltr')
       content = hp.content
-      add_to_cache(category, content)
+      cache.put(category, content)
     else
       puts "Found in cache"
     end
@@ -63,7 +38,9 @@ def read_training_data()
   training_data
 end
 
-td = read_training_data
+cache = Cache.new
+
+td = read_training_data(cache)
 classifier = Classifier.new(td)
 
 results = {
@@ -72,10 +49,24 @@ results = {
   :health => []
 }
 
-rss_parser = RssParser.new('http://feeds.reuters.com/reuters/INtopNews?format=xml')
+
+feeds_url = 'http://feeds.reuters.com/reuters/INtopNews?format=xml'
+rss_parser = RssParser.new(feeds_url)
 rss_parser.article_urls.each do |article_url|
-  puts article_url
-  article = HtmlParser.new(article_url, '#article .area > h3, #article .area > p, #article > h3')
+  puts "Article URL => #{article_url}"
+  title_selector = 'html > body > div#content > div#articleContent.section > div.sectionContent > div.sectionColumns > div.column1 > h1'
+  caption_selector = 'html > body > div#content > div#articleContent.section > div.sectionContent > div.sectionColumns > div.column1 > div#slideshowInlineLarge > div#captionContent.rolloverCaption > div.rolloverBg > div.captionText'
+  article_text_selector = 'html > body > div#content > div#articleContent.section > div.sectionContent > div.sectionColumns > div.column1'
+  my_selector = 'html body div#content div#articleContent.section div.sectionContent div.sectionColumns div.column1'
+  selector = [
+              title_selector,
+              caption_selector,
+              article_text_selector
+              # my_selector
+             ].join(", ")
+  
+  article = HtmlParser.new(article_url, selector)
+  puts "Content => #{article.content}"
   scores = classifier.scores(article.content)
   p scores
   category_name, score = scores.max_by{ |k,v| v }
