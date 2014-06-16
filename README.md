@@ -59,3 +59,24 @@ TODO: Write usage instructions here
  * [My Machine Learning Notes](http://tuxdna.github.io/pages/machine-learning.html)
  * [My Apache Mahout Notes](http://tuxdna.github.io/pages/mahout.html)
  * [My Mahout Scala Talk](http://tuxdna.in/files/presentations/mahout-scala-talk.html)
+
+
+## Notes
+
+News Aggregator App: https://github.com/siyelo/newsagg
+
+http://blog.siyelo.com/intro-to-machine-learning-in-ruby/
+http://www.confreaks.com/videos/2887-rubyconf2013-thinking-about-machine-learning-with-ruby
+http://insideintercom.io/machine-learning-way-easier-than-it-looks/
+http://yann.lecun.com/exdb/mnist/
+https://github.com/arnab/ocr
+http://neovintage.blogspot.in/2011/11/text-classification-using-support.html
+http://slides.com/arnab_deka/ml-with-ruby
+https://www.igvita.com/2008/01/07/support-vector-machines-svm-in-ruby/
+http://www.cs.waikato.ac.nz/ml/weka/
+https://weka.waikato.ac.nz/explorer
+http://www.cs.waikato.ac.nz/ml/weka/mooc/dataminingwithweka/
+en.wikipedia.org/wiki/Support_vector_machine
+https://coreos.com/docs/running-coreos/platforms/qemu/
+https://coreos.com/docs/quickstart/
+
