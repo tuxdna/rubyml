@@ -30,9 +30,15 @@ Or install it yourself as:
 
 ## Usage
 
-To use it on your machine
+When using the bundler
 
-    $ gem build *.gemspec; gem install --local -V rubyml-0.0.1.gem 
+    $ bundle install
+	$ bundle exec news_classifier.rb
+
+
+When using only gem command
+
+    $ gem build *.gemspec; gem install --local -V rubyml-0.0.1.gem
     $ news_classifier.rb
 
 ## Outline
@@ -40,9 +46,7 @@ To use it on your machine
 ### Classification
 
 
-
 ### Clustering
-
 
 
 ### Recommendation
@@ -81,4 +85,4 @@ http://www.cs.waikato.ac.nz/ml/weka/mooc/dataminingwithweka/
 en.wikipedia.org/wiki/Support_vector_machine
 https://coreos.com/docs/running-coreos/platforms/qemu/
 https://coreos.com/docs/quickstart/
-
+http://momolog.info/2010/10/07/ruby-map-array-to-hash/
