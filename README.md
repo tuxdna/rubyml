@@ -69,7 +69,7 @@ When using only gem command
 
 ## Notes
 
-News Aggregator App: https://github.com/siyelo/newsagg
+ * [News Aggregator App](https://github.com/siyelo/newsagg)
 
 http://blog.siyelo.com/intro-to-machine-learning-in-ruby/
 http://www.confreaks.com/videos/2887-rubyconf2013-thinking-about-machine-learning-with-ruby

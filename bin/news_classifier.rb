@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'rss/2.0'
 require 'digest/sha1'
+require 'json'
 
 require 'html_parser'
 require 'classifier'
@@ -47,13 +48,22 @@ def fetch_article(article_url)
   article = HtmlParser.new(article_url, selector)
 end
 
+def write_to_file(filename, results)
+  json_str = JSON.dump(results)
+  f = File.new(filename, "w")
+  f.write(json_str)
+  f.close
+end
+
 cache = Cache.new
 categories = {
   economy: 'http://en.wikipedia.org/wiki/Economy',
   sport: 'http://en.wikipedia.org/wiki/Sport',
+  sports: 'http://en.wikipedia.org/wiki/Sports',
   health: 'http://en.wikipedia.org/wiki/Health',
   science: 'http://en.wikipedia.org/wiki/Science'
 }
+
 td = read_training_data(categories, cache)
 classifier = Classifier.new(td)
 
@@ -90,5 +100,7 @@ rss_parser.article_urls.each do |article_url|
   end
 end
 
-p results
+output_file = "output.json"
+puts "Writing results to #{output_file}..."
+write_to_file(output_file,results)
 
