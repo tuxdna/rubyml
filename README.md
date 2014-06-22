@@ -43,6 +43,34 @@ When using only gem command
 
 ## Outline
 
+
+
+
+“You might also like” section at the bottom of this post. How would we go about that?
+
+To clarify the idea, let’s look at a naive solution:
+
+    Split the current post title into its individual words
+    Get all other posts
+    Sort all other posts by those with the most words in their body in common with our title
+
+
+
+
+
+    i = Magick::Image.read(filename).first
+      out_filename = File.join(cropped_dir, File.split(filename).last)
+     i.quantize(2, Magick::GRAYColorspace) \
+    .contrast(sharpen=true) \
+    .negate(grayscale=true) \
+    .enhance \
+    .adaptive_blur(radius=0.0, sigma=1.0) \
+    .despeckle \
+    .resize_to_fill(28, 28) \
+    .write(out_filename)
+
+
+
 ### Classification
 
 
@@ -54,7 +82,7 @@ When using only gem command
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/rubyml/fork )
+1. Fork it ( http://github.com/tuxdna/rubyml/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -82,7 +110,7 @@ https://www.igvita.com/2008/01/07/support-vector-machines-svm-in-ruby/
 http://www.cs.waikato.ac.nz/ml/weka/
 https://weka.waikato.ac.nz/explorer
 http://www.cs.waikato.ac.nz/ml/weka/mooc/dataminingwithweka/
-en.wikipedia.org/wiki/Support_vector_machine
+http://en.wikipedia.org/wiki/Support_vector_machine
 https://coreos.com/docs/running-coreos/platforms/qemu/
 https://coreos.com/docs/quickstart/
 http://momolog.info/2010/10/07/ruby-map-array-to-hash/
