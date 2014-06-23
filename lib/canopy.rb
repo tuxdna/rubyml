@@ -42,14 +42,16 @@ class Canopy
         all_points_distance += dist
         if dist <= @T1
           # add to canopy C
-          this_canopy[:points].push(rp)
           if dist < @T2
             # remove for list of remaining points
+            this_canopy[:points].push(rp)
             rem_points.delete(rp)
           end
         end
       end
-      this_canopy[:intra_cluster_distance] = all_points_distance / total_points
+      this_canopy[:intra_cluster_distance] = if total_points > 0
+                                               all_points_distance / total_points
+                                             else 0 end
     end
     @canopies = canopies
   end

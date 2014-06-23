@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+
 ##
 # Reuters corpus 
 # Download, unzip, and extract reuters text data from SGML files
@@ -9,6 +10,9 @@
 # tar xzf ${WORK_DIR}/reuters21578.tar.gz -C ${WORK_DIR}/reuters-sgm
 # mahout org.apache.lucene.benchmark.utils.ExtractReuters file://${WORK_DIR}/reuters-sgm file://${WORK_DIR}/reuters-out
 #
+
+## Usage:
+# bundle exec cluster_reuters.rb -r reuters/reuters-out -d tanimoto -l 2000 -m 0.99999 -n 0.9998
 
 require 'set'
 require 'matrix'
@@ -23,11 +27,22 @@ reuters_location = nil
 distance_metric = nil
 documents_limit = 100 # Process upto 100 documents
 
+## For tanimoto similarity
+t1 = 0.99999
+t2 = 0.99980
+
+## For euclidean distance
+t1 = 15
+t2 = 8
+
+
 ## Parse CLI Options
 OptionParser.new do |o|
   o.on('-r REUTERS_CORPUS_LOCATION') { |r| reuters_location = r }
   o.on('-d DISTANCE_METRIC') { |d| distance_metric = d }
   o.on('-l LIMIT') { |l| documents_limit = l.to_i }
+  o.on('-m T1') { |l| t1 = l.to_f }
+  o.on('-n T2') { |l| t2 = l.to_f }
   o.on('-h') { puts o; exit }
   o.parse!
 end
@@ -65,7 +80,7 @@ puts "Setup dictionary for domain vocabulary..."
 dict = Dictionary.new
 
 puts "Read text files..."
-documents_bow = input_files[0...100].map do |input_file|
+documents_bow = input_files[0...documents_limit].map do |input_file|
   puts input_file
   data = File.read(input_file).split("\n\n")
   datetime = data[0] || ""
@@ -79,19 +94,18 @@ documents_bow = input_files[0...100].map do |input_file|
   {title: title, body: body, vector: Set.new(vec)}
 end
 
+puts "Convert to vectors..."
+
 points = documents_bow.map do |entry|
   bag = entry[:vector]
   arr = Array.new(dict.size, 0)
   bag.each { |x| arr[x] = 1 }
-  p [dict.size, arr.length]
-  if dict.size != arr.length
-    p entry
-  end
-  arr
   Vector[*arr]
 end
 
-canopy_clusterer = Canopy.new(dm, 15, 8, points)
+puts "Run canopy clustering over vectors..."
+puts "dm: #{distance_metric}, t1: #{t1}, t2: #{t2}"
+canopy_clusterer = Canopy.new(dm, t1, t2, points)
 canopies = canopy_clusterer.run
 canopies.each do |canopy|
   puts "Canopy: intra cluster distance = #{canopy[:intra_cluster_distance]}"

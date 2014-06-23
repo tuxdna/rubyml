@@ -15,10 +15,13 @@ class ClusterTest < Test::Unit::TestCase
                  ]
     points = points_arr.map { |arr| Vector[*arr] }
 
-    canopy_clusterer = Canopy.new(dm, 7.0, 3.0, points)
+    canopy_clusterer = Canopy.new(dm, 7.0, 4.0, points)
     canopies = canopy_clusterer.run
     canopies.each do |canopy|
-      p canopy.map { |c| points[c] }
+      canopy_points = canopy[:points]
+      canopy_icdist = canopy[:intra_cluster_distance]
+      # p canopy_icdist
+      # p canopy_points.map { |c| points[c] }
     end
   end
   def tear_down

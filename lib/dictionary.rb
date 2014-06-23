@@ -28,7 +28,7 @@ class Dictionary
   end
 
   def size
-    @d.keys.size
+    @d.keys.size + 1
   end
 
 end
