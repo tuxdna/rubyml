@@ -1,11 +1,18 @@
-require 'lib/distance'
+require 'matrix'
 
 class EuclideanDistance
-  include Distance
-  def distance(v1, v2)
-    upper_lim  = [v1.size, v2.size].max
-    (0 ... upper_lim).map {
-      
-    }
+  # calculate euclidean distance between two single row-vectors ( Matrix / Vector)
+  def distance(m1, m2)
+    if m2.size == m1.size
+      Math.sqrt((m2 - m1).map{ |e| e * e }.inject(:+))
+    else
+      Float::INFINITY
+    end
+  end
+
+  def similarity(m1, m2)
+    dist = distance(m1,m2)
+    ## Calculate similarity = 1 / ( 1 + distance )
+    1.0 / (1.0 + dist)
   end
 end

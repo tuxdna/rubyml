@@ -42,22 +42,43 @@ When using only gem command
     $ gem build *.gemspec; gem install --local -V rubyml-0.0.1.gem
     $ news_classifier.rb
 
+
+To test
+
+    $ bundle install
+    $ bundle update -V
+    $ bundle exec rake test
+
 ## Outline
 
 
 
+## Reuters Data setup
 
-“You might also like” section at the bottom of this post. How would we go about that?
 
-To clarify the idea, let’s look at a naive solution:
+Scala to the rescue
+
+    $ scala -cp "lucene*.jar"
+    scala> import org.apache.lucene.benchmark.utils.ExtractReuters
+    import org.apache.lucene.benchmark.utils.ExtractReuters
+    
+    scala> val reutersIn = "/home/saleem/projects/mine/ruby-ml/rubyml/clustering/reuters/reuters-sgm"
+    scala> val reutersOut = "/home/saleem/projects/mine/ruby-ml/rubyml/clustering/reuters/reuters-out"
+    scala> ExtractReuters.main(Array(reutersIn, reutersOut))
+    Deleting all files in /home/saleem/projects/mine/ruby-ml/rubyml/clustering/reuters/reuters-out-tmp
+
+
+
+Recommendation via clustering
+
+    "You might also like": How would we go about that? To clarify the idea, let’s look at a naive solution:
 
     Split the current post title into its individual words
     Get all other posts
     Sort all other posts by those with the most words in their body in common with our title
 
 
-
-
+Processing images
 
     i = Magick::Image.read(filename).first
       out_filename = File.join(cropped_dir, File.split(filename).last)

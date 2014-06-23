@@ -26,4 +26,9 @@ class Dictionary
   def keys
     @d.keys
   end
+
+  def size
+    @d.keys.size
+  end
+
 end
