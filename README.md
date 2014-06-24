@@ -119,6 +119,29 @@ Processing images
 
 ## Notes
 
+Clustering:  Jaccard Coefficient, K-Means Clustering
+Classification: Handwritten digit recognition LibSVM
+Recommendation: 
+
+ML With Ruby
+
+ * AI4R
+ * SciRuby
+ * JRuby and Mahout
+ 
+ Challenges to be solved:
+  * Fast Math
+  * Easy Plotting
+  * Integrated Environment for ML
+  
+Machine Learning - Peter Flach
+BigML
+Dundas
+Kaggle
+
+http://bit.ly/bryanl-machine-learning-intro-talk-code
+https://github.com/bryanl/bryanl-wickedruby2013
+
  * [News Aggregator App](https://github.com/siyelo/newsagg)
 
 http://blog.siyelo.com/intro-to-machine-learning-in-ruby/
