@@ -101,6 +101,7 @@ Processing images
 
 ### Recommendation
 
+[Ruby Toolbox: Recommendation Engines](https://www.ruby-toolbox.com/categories/Recommendation_Engines)
 
 ## Contributing
 
