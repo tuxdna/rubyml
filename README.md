@@ -1,6 +1,6 @@
 # RubyML
 
-This codebase is for the a talk:
+This codebase is for the talk:
 
     Title: Machine Learning with Ruby
 
@@ -49,60 +49,6 @@ To test
     $ bundle update -V
     $ bundle exec rake test
 
-## Outline
-
-
-
-## Reuters Data setup
-
-
-Scala to the rescue
-
-    $ scala -cp "lucene*.jar"
-    scala> import org.apache.lucene.benchmark.utils.ExtractReuters
-    import org.apache.lucene.benchmark.utils.ExtractReuters
-    
-    scala> val reutersIn = "/home/saleem/projects/mine/ruby-ml/rubyml/clustering/reuters/reuters-sgm"
-    scala> val reutersOut = "/home/saleem/projects/mine/ruby-ml/rubyml/clustering/reuters/reuters-out"
-    scala> ExtractReuters.main(Array(reutersIn, reutersOut))
-    Deleting all files in /home/saleem/projects/mine/ruby-ml/rubyml/clustering/reuters/reuters-out-tmp
-
-
-
-Recommendation via clustering
-
-    "You might also like": How would we go about that? To clarify the idea, let’s look at a naive solution:
-
-    Split the current post title into its individual words
-    Get all other posts
-    Sort all other posts by those with the most words in their body in common with our title
-
-
-Processing images
-
-    i = Magick::Image.read(filename).first
-      out_filename = File.join(cropped_dir, File.split(filename).last)
-     i.quantize(2, Magick::GRAYColorspace) \
-    .contrast(sharpen=true) \
-    .negate(grayscale=true) \
-    .enhance \
-    .adaptive_blur(radius=0.0, sigma=1.0) \
-    .despeckle \
-    .resize_to_fill(28, 28) \
-    .write(out_filename)
-
-
-
-### Classification
-
-
-### Clustering
-
-
-### Recommendation
-
-[Ruby Toolbox: Recommendation Engines](https://www.ruby-toolbox.com/categories/Recommendation_Engines)
-
 ## Contributing
 
 1. Fork it ( http://github.com/tuxdna/rubyml/fork )
@@ -111,6 +57,35 @@ Processing images
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+
+## Generating talk presentation
+
+Machine Learning with Ruby
+
+To create presentation first install landslide via pip:
+
+    $ sudo yum install -y python-pip
+    $ pip-python install landslide
+
+Create the presentation:
+
+    $ cd talk/
+    $ landslide rubyml-talk.md --relative --copy-theme -i
+
+Open it in your favorite browser:
+
+    $ firefox presentation.html
+
+Update the presentation while you are still working on it:
+
+Install inotify-tools on Ubuntu:
+
+    $ sudo aptitude install inotify-tools
+
+Use inotifywait to invoke rebuild on every change
+
+    $ while inotifywait -e close_write rubyml-talk.md ; do landslide rubyml-talk.md --relative --copy-theme -i; done
+
 ## References
 
  * [My Machine Learning Notes](http://tuxdna.github.io/pages/machine-learning.html)
@@ -118,45 +93,3 @@ Processing images
  * [My Mahout Scala Talk](http://tuxdna.in/files/presentations/mahout-scala-talk.html)
  * [Following Redirects with Net/HTTP](http://www.railstips.org/blog/archives/2009/03/04/following-redirects-with-nethttp/)
 
-## Notes
-
-Clustering:  Jaccard Coefficient, K-Means Clustering
-Classification: Handwritten digit recognition LibSVM
-Recommendation: 
-
-ML With Ruby
-
- * AI4R
- * SciRuby
- * JRuby and Mahout
- 
- Challenges to be solved:
-  * Fast Math
-  * Easy Plotting
-  * Integrated Environment for ML
-  
-Machine Learning - Peter Flach
-BigML
-Dundas
-Kaggle
-
-http://bit.ly/bryanl-machine-learning-intro-talk-code
-https://github.com/bryanl/bryanl-wickedruby2013
-
- * [News Aggregator App](https://github.com/siyelo/newsagg)
-
-http://blog.siyelo.com/intro-to-machine-learning-in-ruby/
-http://www.confreaks.com/videos/2887-rubyconf2013-thinking-about-machine-learning-with-ruby
-http://insideintercom.io/machine-learning-way-easier-than-it-looks/
-http://yann.lecun.com/exdb/mnist/
-https://github.com/arnab/ocr
-http://neovintage.blogspot.in/2011/11/text-classification-using-support.html
-http://slides.com/arnab_deka/ml-with-ruby
-https://www.igvita.com/2008/01/07/support-vector-machines-svm-in-ruby/
-http://www.cs.waikato.ac.nz/ml/weka/
-https://weka.waikato.ac.nz/explorer
-http://www.cs.waikato.ac.nz/ml/weka/mooc/dataminingwithweka/
-http://en.wikipedia.org/wiki/Support_vector_machine
-https://coreos.com/docs/running-coreos/platforms/qemu/
-https://coreos.com/docs/quickstart/
-http://momolog.info/2010/10/07/ruby-map-array-to-hash/
