@@ -45,16 +45,19 @@ Saleem Ansari (`@tuxdna`)
 * And many more
 
 ---
+
 # Classification
 
 ![Classification](classification.png)
 
 ---
+
 # Clustering
 
 ![Clustering](clustering2.gif)
 
 ---
+
 # Recommendation Algorithms
 
 ![User Based](user-based.png)
@@ -63,12 +66,36 @@ Saleem Ansari (`@tuxdna`)
 
 ---
 
+# Data Processsing Pipeline
+
+Classing Data Processing Pipeline consists of
+
+ * Obtain the Data Source
+ * Cleanse the data coming from Data Source
+ * Represent the data in Mathematical terms
+ * Run your ML Algorithm
+ * Get insight from ML
+
+---
+
 # Basic Ideas
 
- * Similarity and Distance metrics
  * Vector and Matrices
+ * Similarity and Distance metrics
  * Statistics
  * Probability
+
+---
+
+# Vector
+
+![Vector](vector-transpose.png)
+
+---
+
+# Matrix
+
+![Matrix](247px-Matrix.svg.png)
 
 ---
 
@@ -95,18 +122,6 @@ Distance to Similarity conversion ( not the only way )
 
 ---
 
-# Matrix
-
-![Matrix](247px-Matrix.svg.png)
-
----
-
-# Vector
-
-![Vector](vector-transpose.png)
-
-
----
 # Statistics
 
 What are the stats almost everyone knows?
@@ -121,6 +136,7 @@ What about these?
  * stardard deviation
 
 ---
+
 # Probability
 
  * Conditional Probability: `P(A|B) = num(A intersection B) / num(B)`
