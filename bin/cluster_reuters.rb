@@ -81,7 +81,7 @@ dict = Dictionary.new
 
 puts "Read text files..."
 documents_bow = input_files[0...documents_limit].map do |input_file|
-  puts input_file
+  print "#{input_file}\r"
   data = File.read(input_file).split("\n\n")
   datetime = data[0] || ""
   title = data[1] || "" 
@@ -93,6 +93,8 @@ documents_bow = input_files[0...documents_limit].map do |input_file|
   # p vec.map { |s| dict.get_inverted(s) }.join(" ") ## Verify
   {title: title, body: body, vector: Set.new(vec)}
 end
+
+puts
 
 puts "Convert to vectors..."
 
